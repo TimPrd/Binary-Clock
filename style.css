@@ -1,0 +1,39 @@
+body, a {
+	font-family: "Oswald";
+	color: whitesmoke;
+	fill: whitesmoke;
+	background-color: #60a3bc;
+}
+
+h1 {
+	color: #0c2461;
+	text-align: center;
+	text-decoration: underline;
+}
+
+h2 {
+	text-align: center;
+	color: white;
+	line-height: 0px;
+	font-size: 19px;
+	padding-bottom: 50px;
+}
+
+.panel {
+	position: relative;
+	text-align: center;
+}
+
+.panel p {
+	color: #0c2461;
+	font-size: 28px;
+}
+
+.chart {
+	display: inline-block;
+}
+
+footer {
+	margin: auto;
+	text-align: center;
+}
