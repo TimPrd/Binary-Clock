@@ -1,7 +1,93 @@
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
   <script>
-    
+    /*
+* Created By Timothé PARDIEU
+*/
+
+/*
+* TODO :
+* -> Réduire la fonction Convert à 1 *méthode avec n en parametre
+* -> Faire de la chaine retour un array
+* -> v-for dans l'array
+* -> v-if (i==1) alors 1 est ROUGE
+* -> v-if (i==0) alors 0 est BLANC
+*/
+
+var ConvertBase = function(num) {
+  return {
+    from: function(baseFrom) {
+      return {
+        to: function(baseTo) {
+          return parseInt(num, baseFrom).toString(baseTo);
+        }
+      };
+    }
+  };
+};
+
+var app = new Vue({
+  el: "#app",
+  data: {
+    totalHour: 24,
+    totalMinSec: 60,
+    h: "",
+    m: "",
+    s: "",
+    d: "",
+    mo: "",
+    y: "",
+    binaryH:"",
+    chartHours: [["Heures  ", 0], ["Reste", 0]],
+    chartMin: [["Minutes  ", 0], ["Reste", 0]],
+    chartSec: [["Secondes  ", 0], ["Reste", 0]]
+  },
+  computed: {
+    fullDigitHour: function() {
+      return this.h + " : " + this.m + " : " + this.s;
+    },
+    hours: function() {
+      return ConvertBase(this.h).from(10).to(2);
+    },
+    min: function() {
+      var s = ConvertBase(this.m).from(10).to(2);
+      var split = s.split(/(\d)/);
+      var chaine = ""; 
+      return s;
+    },
+    sec: function() {
+      return ConvertBase(this.s).from(10).to(2);
+    }
+  },
+
+  methods: {
+    time() {
+      var self = this;
+      var now = new Date();
+      this.d = now.getDay();
+      this.mo = now.getMonth();
+      this.y = now.getFullYear();
+      this.h = now.getHours();
+      this.m = now.getMinutes();
+      this.s = now.getSeconds();
+
+      this.chartHours[0][1] = this.h;
+      this.chartMin[0][1] = this.m;
+      this.chartSec[0][1] = this.s;
+
+      this.chartMin[1][1] = this.totalMinSec - this.m;
+      this.chartSec[1][1] = this.totalMinSec - this.s;
+      this.chartHours[1][1] = this.totalHour - this.h;
+      setTimeout(self.time, 1000);
+    }
+  },
+  mounted: function() {
+    this.time();
+  }
+});
+
   </script>
 </head>
 <h1>Hello</h1>
