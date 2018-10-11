@@ -16,7 +16,26 @@
 * -> v-if (i==0) alors 0 est BLANC
 */
 
-var ConvertBase = function(num) {
+
+  </script>
+</head>
+<body>
+  
+  <h1>01110100 01101001 01101101 01100101</h1>
+<h2>(translate me..)</h2>
+<div class="panel">
+  <div id="app">
+    <p>{{hours}}</p>
+    <p>{{min}} </p>
+    <p>{{sec}} </p>
+  </div>
+</div>
+<footer>
+  <p>Built by Timothé Pardieu with 🍩</p>
+</footer>
+
+  <script>
+  var ConvertBase = function(num) {
   return {
     from: function(baseFrom) {
       return {
@@ -89,7 +108,4 @@ var app = new Vue({
 });
 
   </script>
-</head>
-<body>
-<div id="app"></div>
 </body>
